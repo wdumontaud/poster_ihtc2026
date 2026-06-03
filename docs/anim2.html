@@ -7,223 +7,86 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
         :root {
-            --black: #111;
-            --gray: #555;
-            --light: #e8e8e8;
-            --accent: #1a4f8a;
-            --bg: #fafafa;
+            --black: #111; --gray: #555; --light: #e8e8e8; --accent: #1a4f8a; --bg: #fafafa;
         }
-
         body {
-            font-family: 'IBM Plex Sans', sans-serif;
-            background: var(--bg);
-            color: var(--black);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            font-family: 'IBM Plex Sans', sans-serif; background: var(--bg); color: var(--black);
+            min-height: 100vh; display: flex; flex-direction: column;
         }
-
         header {
-            border-bottom: 1px solid var(--light);
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            border-bottom: 1px solid var(--light); padding: 1rem 2rem;
+            display: flex; align-items: center; justify-content: space-between;
         }
-
         .header-tag {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--accent);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--accent);
+            letter-spacing: 0.12em; text-transform: uppercase;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 0.5rem;
-        }
-
+        .nav-links { display: flex; gap: 0.5rem; }
         .nav-links a {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--gray);
-            text-decoration: none;
-            padding: 0.3rem 0.7rem;
-            border: 1px solid var(--light);
-            border-radius: 2px;
-            transition: border-color 0.2s, color 0.2s;
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--gray);
+            text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid var(--light);
+            border-radius: 2px; transition: border-color 0.2s, color 0.2s;
         }
-
         .nav-links a:hover { border-color: var(--accent); color: var(--accent); }
         .nav-links a.active { border-color: var(--accent); color: var(--accent); background: #f0f5fb; }
-
         main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            gap: 1.5rem;
+            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 2rem; gap: 1.5rem;
         }
-
-        .meta {
-            width: 100%;
-            max-width: 860px;
-            display: flex;
-            align-items: baseline;
-            gap: 1rem;
-        }
-
+        .meta { width: 100%; max-width: 860px; display: flex; align-items: baseline; gap: 1rem; }
         .anim-number {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.65rem;
-            color: var(--gray);
-            letter-spacing: 0.1em;
-            white-space: nowrap;
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--gray);
+            letter-spacing: 0.1em; white-space: nowrap;
         }
-
-        h1 {
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--black);
-            letter-spacing: 0.01em;
-        }
-
+        h1 { font-size: 1rem; font-weight: 500; color: var(--black); letter-spacing: 0.01em; }
         .anim-frame {
-            width: 100%;
-            max-width: 860px;
-            border: 1px solid var(--light);
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            min-height: 300px;
+            width: 100%; max-width: 860px; border: 1px solid var(--light); background: white;
+            display: flex; align-items: center; justify-content: center; padding: 1rem; min-height: 300px;
         }
-
-        .anim-frame img {
-            max-width: 100%;
-            max-height: 72vh;
-            display: block;
-        }
-
-        .placeholder {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.75rem;
-            color: #bbb;
-            letter-spacing: 0.08em;
-        }
-
+        .anim-frame img { max-width: 100%; max-height: 72vh; display: block; }
         .caption {
-            width: 100%;
-            max-width: 860px;
-            font-size: 0.78rem;
-            color: var(--gray);
-            line-height: 1.6;
-            border-left: 2px solid var(--light);
-            padding-left: 0.8rem;
+            width: 100%; max-width: 860px; font-size: 0.78rem; color: var(--gray); line-height: 1.6;
+            border-left: 2px solid var(--light); padding-left: 0.8rem;
         }
-
-        /* ── Swipe navigation bar ── */
         .swipe-nav {
-            width: 100%;
-            max-width: 860px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            padding: 0.6rem 0;
+            width: 100%; max-width: 860px; display: flex; align-items: center; justify-content: space-between;
+            gap: 1rem; padding: 0.6rem 0;
         }
-
         .swipe-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.45rem;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.68rem;
-            color: var(--gray);
-            text-decoration: none;
-            padding: 0.45rem 0.8rem;
-            border: 1px solid var(--light);
-            border-radius: 3px;
-            transition: border-color 0.2s, color 0.2s, background 0.2s;
-            letter-spacing: 0.06em;
-            min-width: 80px;
-            white-space: nowrap;
+            display: flex; align-items: center; gap: 0.45rem; font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem; color: var(--gray); text-decoration: none; padding: 0.45rem 0.8rem;
+            border: 1px solid var(--light); border-radius: 3px; transition: border-color 0.2s, color 0.2s, background 0.2s;
+            letter-spacing: 0.06em; min-width: 80px; white-space: nowrap;
         }
-
-        .swipe-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: #f0f5fb;
-        }
-
-        .swipe-btn.disabled {
-            opacity: 0.25;
-            pointer-events: none;
-        }
-
+        .swipe-btn:hover { border-color: var(--accent); color: var(--accent); background: #f0f5fb; }
+        .swipe-btn.disabled { opacity: 0.25; pointer-events: none; }
         .swipe-btn.next { justify-content: flex-end; }
         .swipe-btn.prev { justify-content: flex-start; }
-
-        .swipe-hint {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.35rem;
-            flex: 1;
-        }
-
-        .dot-nav {
-            display: flex;
-            gap: 0.45rem;
-            align-items: center;
-        }
-
-        .dot-nav .dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--light);
-            transition: background 0.2s, transform 0.2s;
-        }
-
-        .dot-nav .dot.active {
-            background: var(--accent);
-            transform: scale(1.25);
-        }
-
+        .swipe-hint { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; flex: 1; }
+        .dot-nav { display: flex; gap: 0.45rem; align-items: center; }
+        .dot-nav .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--light); transition: background 0.2s, transform 0.2s; }
+        .dot-nav .dot.active { background: var(--accent); transform: scale(1.25); }
         .swipe-label {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.58rem;
-            color: #bbb;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: #bbb;
+            letter-spacing: 0.1em; text-transform: uppercase;
         }
-
-        /* ── Footer ── */
         footer {
-            border-top: 1px solid var(--light);
-            padding: 0.8rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            border-top: 1px solid var(--light); padding: 0.8rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
         }
-
         .footer-text {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.62rem;
-            color: #aaa;
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: #aaa;
             letter-spacing: 0.08em;
         }
-
+        .social-links { display: flex; gap: 0.75rem; margin-right: 1rem; }
+        .social-link { color: var(--gray); transition: color 0.2s; }
+        .social-link:hover { color: var(--accent); }
+        .social-link svg { width: 18px; height: 18px; }
         @media (max-width: 400px) {
             .swipe-label { display: none; }
             .swipe-btn span { display: none; }
+            .social-links { margin-right: 0.5rem; }
         }
     </style>
 </head>
@@ -235,12 +98,13 @@
         <a href="anim1.html">01</a>
         <a href="anim2.html" class="active">02</a>
         <a href="anim3.html">03</a>
+        <a href="anim4.html">04</a>
     </nav>
 </header>
 
 <main>
     <div class="meta">
-        <span class="anim-number">ANIM. 02 / 03</span>
+        <span class="anim-number">ANIM. 02 / 04</span>
         <h1>Convergence of the NSGAII algorithm for interface optimisation in Rio de Janeiro</h1>
     </div>
 
@@ -253,7 +117,7 @@
     </div>
 
     <p class="caption">
-        First, we can see how the interface evolves, with its Bézier points for the 42 individuals in each generation of the genetic algorithm. 
+        First, we can see how the interface evolves, with its Bézier points for the 42 individuals in each generation of the genetic algorithm.
         Below this, the evolution of the convergence indicators up to the limit is shown.
     </p>
 
@@ -267,6 +131,7 @@
                 <span class="dot"></span>
                 <span class="dot active"></span>
                 <span class="dot"></span>
+                <span class="dot"></span>
             </span>
             <span class="swipe-label">swipe to navigate</span>
         </div>
@@ -278,6 +143,17 @@
 </main>
 
 <footer>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/william-dumontaud-745512261/" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+        <a href="https://orcid.org/0009-0004-4638-8415" class="social-link" aria-label="ORCID">
+            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z"/><text x="12" y="15" font-size="5" text-anchor="middle" fill="white">iD</text></svg>
+        </a>
+        <a href="https://cv.hal.science/william-dumontaud" class="social-link" aria-label="HAL">
+            <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="14" font-size="7" text-anchor="middle" fill="currentColor" font-family="IBM Plex Sans">HAL</text></svg>
+        </a>
+    </div>
     <span class="footer-text">Scan the QR code from the poster</span>
     <span class="footer-text">Swipe or use ← → to navigate</span>
 </footer>
@@ -287,7 +163,6 @@
         if (e.key === 'ArrowLeft') location.href = 'anim1.html';
         if (e.key === 'ArrowRight') location.href = 'anim3.html';
     });
-
     let touchStartX = 0;
     document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
     document.addEventListener('touchend', e => {
@@ -298,6 +173,5 @@
         }
     }, { passive: true });
 </script>
-
 </body>
 </html>

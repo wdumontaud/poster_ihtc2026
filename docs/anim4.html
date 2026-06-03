@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animation 3</title>
+    <title>Animation 4 — Article PDF</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -32,9 +32,9 @@
         .nav-links a.active { border-color: var(--accent); color: var(--accent); background: #f0f5fb; }
         main {
             flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 2rem; gap: 1.5rem;
+            padding: 1rem; gap: 1.5rem;
         }
-        .meta { width: 100%; max-width: 860px; display: flex; align-items: baseline; gap: 1rem; }
+        .meta { width: 100%; max-width: 860px; display: flex; align-items: baseline; gap: 1rem; padding: 0 1rem; }
         .anim-number {
             font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--gray);
             letter-spacing: 0.1em; white-space: nowrap;
@@ -42,16 +42,16 @@
         h1 { font-size: 1rem; font-weight: 500; color: var(--black); letter-spacing: 0.01em; }
         .anim-frame {
             width: 100%; max-width: 860px; border: 1px solid var(--light); background: white;
-            display: flex; align-items: center; justify-content: center; padding: 1rem; min-height: 300px;
+            display: flex; align-items: center; justify-content: center; padding: 1rem; min-height: 72vh;
         }
-        .anim-frame img { max-width: 100%; max-height: 72vh; display: block; }
+        .anim-frame iframe { width: 100%; height: 100%; min-height: 600px; border: none; }
         .caption {
             width: 100%; max-width: 860px; font-size: 0.78rem; color: var(--gray); line-height: 1.6;
-            border-left: 2px solid var(--light); padding-left: 0.8rem;
+            border-left: 2px solid var(--light); padding-left: 0.8rem; margin: 0 1rem;
         }
         .swipe-nav {
             width: 100%; max-width: 860px; display: flex; align-items: center; justify-content: space-between;
-            gap: 1rem; padding: 0.6rem 0;
+            gap: 1rem; padding: 0.6rem 1rem;
         }
         .swipe-btn {
             display: flex; align-items: center; gap: 0.45rem; font-family: 'IBM Plex Mono', monospace;
@@ -79,14 +79,12 @@
             font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: #aaa;
             letter-spacing: 0.08em;
         }
-        .social-links { display: flex; gap: 0.75rem; margin-right: 1rem; }
-        .social-link { color: var(--gray); transition: color 0.2s; }
-        .social-link:hover { color: var(--accent); }
-        .social-link svg { width: 18px; height: 18px; }
         @media (max-width: 400px) {
             .swipe-label { display: none; }
             .swipe-btn span { display: none; }
-            .social-links { margin-right: 0.5rem; }
+            main { padding: 0.5rem; }
+            .meta, .caption, .swipe-nav { padding-left: 0; padding-right: 0; }
+            .anim-frame { min-height: 60vh; }
         }
     </style>
 </head>
@@ -97,27 +95,27 @@
     <nav class="nav-links">
         <a href="anim1.html">01</a>
         <a href="anim2.html">02</a>
-        <a href="anim3.html" class="active">03</a>
-        <a href="anim4.html">04</a>
+        <a href="anim3.html">03</a>
+        <a href="anim4.html" class="active">04</a>
     </nav>
 </header>
 
 <main>
     <div class="meta">
-        <span class="anim-number">ANIM. 03 / 04</span>
-        <h1>Temporal evolution of the temperature field in an optimised façade</h1>
+        <span class="anim-number">ANIM. 04 / 04</span>
+        <h1>Article PDF</h1>
     </div>
 
     <div class="anim-frame">
-        <img src="fig/temperature_evolution.gif" alt="Animation du champ de temperature">
+        <iframe src="pdf/article_ihtc2026_dumontaud.pdf" title="Article PDF"></iframe>
     </div>
 
     <p class="caption">
-        Temporal evolution of the temperature field for the optimised Rio de Janeiro interface at 1 December.
+        Visualisation du PDF de l'article. Utilisez les contrôles du navigateur ou balayez pour naviguer dans le document.
     </p>
 
     <div class="swipe-nav">
-        <a class="swipe-btn prev" href="anim2.html">
+        <a class="swipe-btn prev" href="anim3.html">
             <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><polyline points="11,3 5,9 11,15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span>Prev</span>
         </a>
@@ -125,12 +123,12 @@
             <span class="dot-nav">
                 <span class="dot"></span>
                 <span class="dot"></span>
-                <span class="dot active"></span>
                 <span class="dot"></span>
+                <span class="dot active"></span>
             </span>
             <span class="swipe-label">swipe to navigate</span>
         </div>
-        <a class="swipe-btn next" href="anim4.html">
+        <a class="swipe-btn next disabled" aria-label="No next animation">
             <span>Next</span>
             <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><polyline points="7,3 13,9 7,15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -138,34 +136,19 @@
 </main>
 
 <footer>
-    <div class="social-links">
-        <a href="https://www.linkedin.com/in/william-dumontaud-745512261/" class="social-link" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-        </a>
-        <a href="https://orcid.org/0009-0004-4638-8415" class="social-link" aria-label="ORCID">
-            <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 6c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z"/><text x="12" y="15" font-size="5" text-anchor="middle" fill="white">iD</text></svg>
-        </a>
-        <a href="https://cv.hal.science/william-dumontaud" class="social-link" aria-label="HAL">
-            <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="14" font-size="7" text-anchor="middle" fill="currentColor" font-family="IBM Plex Sans">HAL</text></svg>
-        </a>
-    </div>
     <span class="footer-text">Scan the QR code from the poster</span>
     <span class="footer-text">Swipe or use ← → to navigate</span>
 </footer>
 
 <script>
     document.addEventListener('keydown', e => {
-        if (e.key === 'ArrowLeft') location.href = 'anim2.html';
-        if (e.key === 'ArrowRight') location.href = 'anim4.html';
+        if (e.key === 'ArrowLeft') location.href = 'anim3.html';
     });
     let touchStartX = 0;
     document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
     document.addEventListener('touchend', e => {
         const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 50) {
-            if (dx < 0) location.href = 'anim4.html';
-            else location.href = 'anim2.html';
-        }
+        if (Math.abs(dx) > 50 && dx > 0) location.href = 'anim3.html';
     }, { passive: true });
 </script>
 </body>
