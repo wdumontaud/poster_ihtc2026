@@ -120,6 +120,84 @@
             padding-left: 0.8rem;
         }
 
+        /* ── Swipe navigation bar ── */
+        .swipe-nav {
+            width: 100%;
+            max-width: 860px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.6rem 0;
+        }
+
+        .swipe-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--gray);
+            text-decoration: none;
+            padding: 0.45rem 0.8rem;
+            border: 1px solid var(--light);
+            border-radius: 3px;
+            transition: border-color 0.2s, color 0.2s, background 0.2s;
+            letter-spacing: 0.06em;
+            min-width: 80px;
+            white-space: nowrap;
+        }
+
+        .swipe-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: #f0f5fb;
+        }
+
+        .swipe-btn.disabled {
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        .swipe-btn.next { justify-content: flex-end; }
+        .swipe-btn.prev { justify-content: flex-start; }
+
+        .swipe-hint {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.35rem;
+            flex: 1;
+        }
+
+        .dot-nav {
+            display: flex;
+            gap: 0.45rem;
+            align-items: center;
+        }
+
+        .dot-nav .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--light);
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .dot-nav .dot.active {
+            background: var(--accent);
+            transform: scale(1.25);
+        }
+
+        .swipe-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.58rem;
+            color: #bbb;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ── Footer ── */
         footer {
             border-top: 1px solid var(--light);
             padding: 0.8rem 2rem;
@@ -133,6 +211,12 @@
             font-size: 0.62rem;
             color: #aaa;
             letter-spacing: 0.08em;
+        }
+
+        /* Mobile: hide swipe label on very small screens */
+        @media (max-width: 400px) {
+            .swipe-label { display: none; }
+            .swipe-btn span { display: none; }
         }
     </style>
 </head>
@@ -160,17 +244,47 @@
     <p class="caption">
         The interface represented using Bézier curve defined with 4 control points and Bernstein polynomial interpolation. The term A ensures that the volume of each layer of material remains constant regardless of the position of the control points.
     </p>
+
+    <div class="swipe-nav">
+        <a class="swipe-btn prev disabled" aria-label="No previous animation">
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><polyline points="11,3 5,9 11,15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Prev</span>
+        </a>
+        <div class="swipe-hint">
+            <span class="dot-nav">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </span>
+            <span class="swipe-label">swipe to navigate</span>
+        </div>
+        <a class="swipe-btn next" href="anim2.html">
+            <span>Next</span>
+            <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><polyline points="7,3 13,9 7,15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+    </div>
 </main>
 
 <footer>
-    <span class="footer-text">Scan du QR code depuis le poster</span>
-    <span class="footer-text">← → pour naviguer entre les animations</span>
+    <span class="footer-text">Scan the QR code from the poster</span>
+    <span class="footer-text">Swipe or use ← → to navigate</span>
 </footer>
 
 <script>
+    // Keyboard navigation
     document.addEventListener('keydown', e => {
         if (e.key === 'ArrowRight') location.href = 'anim2.html';
     });
+
+    // Touch swipe navigation
+    let touchStartX = 0;
+    document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    document.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 50) {
+            if (dx < 0) location.href = 'anim2.html'; // swipe left → next
+        }
+    }, { passive: true });
 </script>
 
 </body>
