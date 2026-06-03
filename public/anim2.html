@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --black: #111;
+            --gray: #555;
+            --light: #e8e8e8;
+            --accent: #1a4f8a;
+            --bg: #fafafa;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background: var(--bg);
+            color: var(--black);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            border-bottom: 1px solid var(--light);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-links a {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--gray);
+            text-decoration: none;
+            padding: 0.3rem 0.7rem;
+            border: 1px solid var(--light);
+            border-radius: 2px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .nav-links a:hover { border-color: var(--accent); color: var(--accent); }
+        .nav-links a.active { border-color: var(--accent); color: var(--accent); background: #f0f5fb; }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            gap: 1.5rem;
+        }
+
+        .meta {
+            width: 100%;
+            max-width: 860px;
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .anim-number {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--gray);
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+        }
+
+        h1 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--black);
+            letter-spacing: 0.01em;
+        }
+
+        .anim-frame {
+            width: 100%;
+            max-width: 860px;
+            border: 1px solid var(--light);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            min-height: 300px;
+        }
+
+        .anim-frame img {
+            max-width: 100%;
+            max-height: 72vh;
+            display: block;
+        }
+
+        .placeholder {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.75rem;
+            color: #bbb;
+            letter-spacing: 0.08em;
+        }
+
+        .caption {
+            width: 100%;
+            max-width: 860px;
+            font-size: 0.78rem;
+            color: var(--gray);
+            line-height: 1.6;
+            border-left: 2px solid var(--light);
+            padding-left: 0.8rem;
+        }
+
+        footer {
+            border-top: 1px solid var(--light);
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.62rem;
+            color: #aaa;
+            letter-spacing: 0.08em;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <span class="header-tag">Poster — Animations</span>
+    <nav class="nav-links">
+        <a href="anim1.html">01</a>
+        <a href="anim2.html" class="active">02</a>
+        <a href="anim3.html">03</a>
+    </nav>
+</header>
+
+<main>
+    <div class="meta">
+        <span class="anim-number">ANIM. 02 / 03</span>
+        <h1>Titre de l'animation 2</h1>
+    </div>
+
+    <div class="anim-frame">
+        <!-- Remplace le placeholder par : <img src="fig/anim2.gif" alt="..."> -->
+        <span class="placeholder">[ fig/anim2.gif ]</span>
+    </div>
+
+    <p class="caption">
+        Description de l'animation 2 — à compléter.
+    </p>
+</main>
+
+<footer>
+    <span class="footer-text">Scan du QR code depuis le poster</span>
+    <span class="footer-text">← → pour naviguer entre les animations</span>
+</footer>
+
+<script>
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft') location.href = 'anim1.html';
+        if (e.key === 'ArrowRight') location.href = 'anim3.html';
+    });
+</script>
+
+</body>
+</html>
