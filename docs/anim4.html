@@ -79,12 +79,14 @@
             font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: #aaa;
             letter-spacing: 0.08em;
         }
+        .social-links { display: flex; gap: 0.75rem; margin-right: 1rem; }
+        .social-link { color: var(--gray); transition: color 0.2s; }
+        .social-link:hover { color: var(--accent); }
+        .social-link svg { width: 18px; height: 18px; }
         @media (max-width: 400px) {
             .swipe-label { display: none; }
             .swipe-btn span { display: none; }
-            main { padding: 0.5rem; }
-            .meta, .caption, .swipe-nav { padding-left: 0; padding-right: 0; }
-            .anim-frame { min-height: 60vh; }
+            .social-links { margin-right: 0.5rem; }
         }
     </style>
 </head>
@@ -106,6 +108,10 @@
         <h1>Article & Poster Links</h1>
     </div>
 
+    <p class="caption">
+        Click on the article or poster to open it in a new window.
+    </p>
+    
 <div class="documents-container">
 
     <a href="pdf/article_ihtc2026_dumontaud.pdf" target="_blank" rel="noopener noreferrer">
@@ -118,10 +124,6 @@
         <img src="fig/poster_previsu.png" alt="Prévisualisation poster" style="max-width: 300px; height: auto; display: block; margin: 0 auto;">
     </a>
 </div>
-
-    <p class="caption">
-        Click on the article or poster to open it in a new window.
-    </p>
 
     <div class="swipe-nav">
         <a class="swipe-btn prev" href="anim3.html">
