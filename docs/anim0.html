@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animation 1 — Interface thermique</title>
+    <title>Animation 2</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -102,12 +102,14 @@
             align-items: center;
             justify-content: center;
             padding: 1rem;
+            min-height: 300px;
         }
 
         .anim-frame img {
             max-width: 100%;
             max-height: 72vh;
             display: block;
+            transition: opacity 0.5s ease;
         }
 
         .caption {
@@ -118,6 +120,7 @@
             line-height: 1.6;
             border-left: 2px solid var(--light);
             padding-left: 0.8rem;
+            transition: opacity 0.5s ease;
         }
 
         footer {
@@ -141,24 +144,24 @@
 <header>
     <span class="header-tag">Poster — Animations</span>
     <nav class="nav-links">
-        <a href="anim1.html" class="active">01</a>
-        <a href="anim2.html">02</a>
+        <a href="anim1.html">01</a>
+        <a href="anim2.html" class="active">02</a>
         <a href="anim3.html">03</a>
     </nav>
 </header>
 
 <main>
     <div class="meta">
-        <span class="anim-number">ANIM. 01 / 03</span>
-        <h1>Simulation de l'interface thermique</h1>
+        <span class="anim-number">ANIM. 02 / 03</span>
+        <h1 id="anim-title">Titre de l'animation 2</h1>
     </div>
 
     <div class="anim-frame">
-        <img src="fig/bezier_anim.gif" alt="Animation de l'interface thermique">
+        <img id="anim-image" src="fig/rue.png" alt="Animation étape 1">
     </div>
 
-    <p class="caption">
-        Évolution temporelle de l'interface — simulation numérique par couplage DuFort-Frankel / Ghost Fluid Method.
+    <p class="caption" id="anim-caption">
+        Description de l'animation 2 — à compléter.
     </p>
 </main>
 
@@ -168,9 +171,71 @@
 </footer>
 
 <script>
+    // Configuration des étapes
+    const steps = [
+        {
+            src: "fig/rue.png",
+            title: "Vue d'ensemble de la rue",
+            caption: "Voici la rue avec les bâtiments. Aucune information thermique n'est encore affichée."
+        },
+        {
+            src: "fig/convection_exterieure.png",
+            title: "Convection extérieure",
+            caption: "Les flèches bleues montrent les flux de convection à l'extérieur des bâtiments."
+        },
+        {
+            src: "fig/convection_interieure.png",
+            title: "Convection intérieure",
+            caption: "Ici, les flux de convection à l'intérieur des bâtiments sont mis en évidence."
+        },
+        {
+            src: "fig/radiations.png",
+            title: "Rayonnements thermiques",
+            caption: "Les icônes de soleil représentent les sources de rayonnement thermique."
+        }
+    ];
+
+    // Éléments du DOM
+    const imageEl = document.getElementById("anim-image");
+    const titleEl = document.getElementById("anim-title");
+    const captionEl = document.getElementById("anim-caption");
+
+    // Index de l'étape actuelle
+    let currentStep = 0;
+
+    // Fonction pour mettre à jour l'affichage
+    function updateStep() {
+        const step = steps[currentStep];
+        imageEl.src = step.src;
+        titleEl.textContent = step.title;
+        captionEl.textContent = step.caption;
+
+        // Animation de transition (optionnel)
+        imageEl.style.opacity = 0.5;
+        captionEl.style.opacity = 0.5;
+        setTimeout(() => {
+            imageEl.style.opacity = 1;
+            captionEl.style.opacity = 1;
+        }, 100);
+    }
+
+    // Changer d'étape toutes les 20 secondes
+    function startSlideshow() {
+        updateStep();
+        setInterval(() => {
+            currentStep = (currentStep + 1) % steps.length;
+            updateStep();
+        }, 20000); // 20 000 ms = 20 secondes
+    }
+
+    // Navigation clavier
     document.addEventListener('keydown', e => {
-        if (e.key === 'ArrowRight') location.href = 'anim2.html';
+        if (e.key === 'ArrowLeft') location.href = 'anim1.html';
+        if (e.key === 'ArrowRight') location.href = 'anim3.html';
     });
+
+    // Démarrer le diaporama
+    startSlideshow();
 </script>
 
 </body>
