@@ -54,16 +54,7 @@
         .anim-frame.single img {
             width: 100%; max-height: 72vh; object-fit: contain;
         }
-        @media (max-width: 700px) {
-            .anim-frame:not(.single) {
-                flex-direction: column;
-                align-items: center;
-            }
-            .anim-frame:not(.single) img:first-child,
-            .anim-frame:not(.single) img:last-child {
-                flex: 0 0 auto; width: 100%; max-height: 50vh; object-fit: contain;
-            }
-        }
+
         .caption {
             width: 100%; max-width: 860px; font-size: 0.78rem; color: var(--gray); line-height: 1.6;
             border-left: 2px solid var(--light); padding-left: 0.8rem;
