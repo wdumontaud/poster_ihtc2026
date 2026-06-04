@@ -42,14 +42,27 @@
         h1 { font-size: 1rem; font-weight: 500; color: var(--black); letter-spacing: 0.01em; }
         .anim-frame {
             width: 100%; max-width: 860px; border: 1px solid var(--light); background: white;
-            display: flex; align-items: center; justify-content: center; padding: 1rem; min-height: 300px;
+            display: flex; align-items: center; justify-content: center; padding: 1rem;
             gap: 1rem;
         }
         .anim-frame img:first-child {
-            width: 36%; flex: 0 0 36%; max-height: 72vh; object-fit: contain;
+            flex: 0 0 36%; width: 36%; max-height: 55vh; object-fit: contain;
         }
         .anim-frame img:last-child {
-            width: 64%; flex: 0 0 64%; max-height: 72vh; object-fit: contain;
+            flex: 0 0 64%; width: 64%; max-height: 55vh; object-fit: contain;
+        }
+        .anim-frame.single img {
+            max-width: 100%; max-height: 72vh;
+        }
+        @media (max-width: 600px) {
+            .anim-frame {
+                flex-direction: column;
+                align-items: center;
+            }
+            .anim-frame img:first-child,
+            .anim-frame img:last-child {
+                flex: 0 0 auto; width: 100%; max-height: 50vh; object-fit: contain;
+            }
         }
         .caption {
             width: 100%; max-width: 860px; font-size: 0.78rem; color: var(--gray); line-height: 1.6;
@@ -90,8 +103,6 @@
         .social-link:hover { color: var(--accent); }
         .social-link svg { width: 18px; height: 18px; }
         @media (max-width: 400px) {
-            /* .anim-frame { flex-direction: column; }
-            .anim-frame img { width: 100% !important; flex: 0 0 100% !important; } */
             .swipe-label { display: none; }
             .swipe-btn span { display: none; }
             .social-links { margin-right: 0.5rem; }
@@ -121,7 +132,7 @@
         <img src="fig/temperature_evolution.gif" alt="Animation du champ de température">
     </div>
 
-    <div class="anim-frame">
+    <div class="anim-frame single">
         <img src="fig/boundary_evolution.gif" alt="Animation temperatures">
     </div>
 
