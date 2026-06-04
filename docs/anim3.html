@@ -43,8 +43,14 @@
         .anim-frame {
             width: 100%; max-width: 860px; border: 1px solid var(--light); background: white;
             display: flex; align-items: center; justify-content: center; padding: 1rem; min-height: 300px;
+            gap: 1rem;
         }
-        .anim-frame img { max-width: 100%; max-height: 72vh; display: block; }
+        .anim-frame img:first-child {
+            width: 36%; flex: 0 0 36%; max-height: 72vh; object-fit: contain;
+        }
+        .anim-frame img:last-child {
+            width: 64%; flex: 0 0 64%; max-height: 72vh; object-fit: contain;
+        }
         .caption {
             width: 100%; max-width: 860px; font-size: 0.78rem; color: var(--gray); line-height: 1.6;
             border-left: 2px solid var(--light); padding-left: 0.8rem;
@@ -84,6 +90,8 @@
         .social-link:hover { color: var(--accent); }
         .social-link svg { width: 18px; height: 18px; }
         @media (max-width: 400px) {
+            .anim-frame { flex-direction: column; }
+            .anim-frame img { width: 100% !important; flex: 0 0 100% !important; }
             .swipe-label { display: none; }
             .swipe-btn span { display: none; }
             .social-links { margin-right: 0.5rem; }
@@ -109,7 +117,8 @@
     </div>
 
     <div class="anim-frame">
-        <img src="fig/temperature_evolution.gif" alt="Animation du champ de temperature">
+        <img src="fig/vertical_flux_profile.gif" alt="Animation complémentaire">
+        <img src="fig/temperature_evolution.gif" alt="Animation du champ de température">
     </div>
 
     <p class="caption">
