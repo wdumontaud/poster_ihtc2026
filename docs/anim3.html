@@ -55,12 +55,12 @@
             width: 100%; max-height: 72vh; object-fit: contain;
         }
         @media (max-width: 600px) {
-            .anim-frame {
+            .anim-frame:not(.single) {
                 flex-direction: column;
                 align-items: center;
             }
-            .anim-frame img:first-child,
-            .anim-frame img:last-child {
+            .anim-frame:not(.single) img:first-child,
+            .anim-frame:not(.single) img:last-child {
                 flex: 0 0 auto; width: 100%; max-height: 50vh; object-fit: contain;
             }
         }
@@ -137,7 +137,7 @@
     </div>
 
     <p class="caption">
-        Temporal evolution of the temperature field for the optimised interface in Rio de Janeiro between 3 and 8 August (top right), along with the short-wave flux boundary conditions (top left) and temperature boundary conditions (bottom). 
+        Temporal evolution of the temperature field for the optimised interface in Rio de Janeiro between 3 and 8 August (top right), along with the short-wave flux boundary conditions (top left) and temperature boundary conditions (bottom).
     </p>
 
     <div class="swipe-nav">
