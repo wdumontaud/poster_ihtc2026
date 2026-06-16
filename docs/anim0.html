@@ -19,10 +19,10 @@
             display: flex; align-items: center; justify-content: space-between;
         }
         .header-tag {
-            font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--accent);
-            letter-spacing: 0.12em; text-transform: uppercase;
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: var(--accent);
+            letter-spacing: 0.11em; text-transform: uppercase;
         }
-        .nav-links { display: flex; gap: 0.5rem; }
+        .nav-links { display: flex; gap: 0.4rem; }
         .nav-links a {
             font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--gray);
             text-decoration: none; padding: 0.3rem 0.7rem; border: 1px solid var(--light);
@@ -123,6 +123,27 @@
             .swipe-btn span { display: none; }
             .social-links { margin-right: 0.5rem; }
         }
+
+        .logo-strip {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding: 2rem 2rem;
+            border-bottom: none;
+            background: var(--bg);
+        }
+        .logo-strip img {
+            height: 32px;          /* ajuste selon tes logos */
+            width: auto;
+            opacity: 0.85;
+            transition: opacity 0.2s, filter 0.2s, transform 0.2s;
+        }
+        .logo-strip img:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.03);
+        }
     </style>
 </head>
 <body>
@@ -138,7 +159,16 @@
     </nav>
 </header>
 
+<div class="logo-strip">
+    <img src="fig/logo_cnrs.jpg" alt="CNRS">
+    <img src="fig/logo_LRU.png" alt="LRU">
+    <img src="fig/logo_Lasie.png" alt="Lasie">
+    <img src="fig/logo_iusti.png" alt="IUSTI">
+    <img src="fig/logo_anr.png" alt="ANR">
+</div>
+
 <main>
+
     <div class="meta">
         <span class="anim-number">PAGE. 00 / 05</span>
         <h1>Introduction</h1>
@@ -152,12 +182,18 @@
         </p>
 
         <div class="author-row">
-            <span>William Dumontaud</span>
+            <span>
+                <a href="https://scholar.google.com/citations?user=ASkeZO0AAAAJ&hl=fr&oi=sra" target="_blank" rel="noopener">
+                    William Dumontaud
+                </a>
+            </span>
+            <span> LaSIE, UMR 7356 CNRS, La Rochelle Université, 17000 La Rochelle, France </span>
             <span class="author-sep">·</span>
-            <!-- ↓ Remplacer par votre institution -->
-            <span>Université de La Rochelle &amp; CNRS</span>
-            <span class="author-sep">·</span>
-            <span>IHTC 2026</span>
+            <span>
+                <a href="https://ihtc18.org/" target="_blank" rel="noopener">
+                    IHTC 2026
+                </a>
+            </span>
         </div>
 
         <!-- ↓ Remplacer ou adapter le résumé -->
