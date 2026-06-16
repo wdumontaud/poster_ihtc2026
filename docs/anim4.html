@@ -8,7 +8,7 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --black: #111; --gray: #555; --light: #e8e8e8; --accent: #1a4f8a; --bg: #fafafa;
+            --black: #111; --gray: #555; --light: #e8e8e8; --accent: #ED8428; --bg: #fafafa;
         }
         body {
             font-family: 'IBM Plex Sans', sans-serif; background: var(--bg); color: var(--black);
@@ -29,7 +29,7 @@
             border-radius: 2px; transition: border-color 0.2s, color 0.2s;
         }
         .nav-links a:hover { border-color: var(--accent); color: var(--accent); }
-        .nav-links a.active { border-color: var(--accent); color: var(--accent); background: #f0f5fb; }
+        .nav-links a.active { border-color: var(--accent); color: var(--accent); background: #fef6ee; }
         main {
             flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
             padding: 1rem; gap: 1.5rem;
@@ -59,7 +59,7 @@
             border: 1px solid var(--light); border-radius: 3px; transition: border-color 0.2s, color 0.2s, background 0.2s;
             letter-spacing: 0.06em; min-width: 80px; white-space: nowrap;
         }
-        .swipe-btn:hover { border-color: var(--accent); color: var(--accent); background: #f0f5fb; }
+        .swipe-btn:hover { border-color: var(--accent); color: var(--accent); background: #fef6ee; }
         .swipe-btn.disabled { opacity: 0.25; pointer-events: none; }
         .swipe-btn.next { justify-content: flex-end; }
         .swipe-btn.prev { justify-content: flex-start; }
@@ -95,6 +95,7 @@
 <header>
     <span class="header-tag">Poster — Animations</span>
     <nav class="nav-links">
+        <a href="anim0.html">00</a>
         <a href="anim1.html">01</a>
         <a href="anim2.html">02</a>
         <a href="anim3.html">03</a>
@@ -104,26 +105,26 @@
 
 <main>
     <div class="meta">
-        <span class="anim-number">PAGE. 04 / 04</span>
-        <h1>Article & Poster Links</h1>
+        <span class="anim-number">PAGE. 04 / 05</span>
+        <h1>Article &amp; Poster Links</h1>
     </div>
 
     <p class="caption">
         Click on the article or poster to open it in a new window.
     </p>
-    
-<div class="documents-container">
 
-    <a href="pdf/article_ihtc2026_dumontaud.pdf" target="_blank" rel="noopener noreferrer">
-        <img src="fig/article_previsu.png" alt="Prévisualisation article" style="max-width: 300px; height: auto; display: block; margin: 0 auto;">
-    </a>
+    <div class="documents-container">
 
-    <div style="border-top: 1px solid #e8e8e8; width: 100%; max-width: 300px; margin: 1.5rem auto;"></div>
+        <a href="pdf/article_ihtc2026_dumontaud.pdf" target="_blank" rel="noopener noreferrer">
+            <img src="fig/article_previsu.png" alt="Prévisualisation article" style="max-width: 300px; height: auto; display: block; margin: 0 auto;">
+        </a>
 
-    <a href="pdf/Poster_IHTC2026.pdf" target="_blank" rel="noopener noreferrer">
-        <img src="fig/poster_previsu.png" alt="Prévisualisation poster" style="max-width: 300px; height: auto; display: block; margin: 0 auto;">
-    </a>
-</div>
+        <div style="border-top: 1px solid #e8e8e8; width: 100%; max-width: 300px; margin: 1.5rem auto;"></div>
+
+        <a href="pdf/Poster_IHTC2026.pdf" target="_blank" rel="noopener noreferrer">
+            <img src="fig/poster_previsu.png" alt="Prévisualisation poster" style="max-width: 300px; height: auto; display: block; margin: 0 auto;">
+        </a>
+    </div>
 
     <div class="swipe-nav">
         <a class="swipe-btn prev" href="anim3.html">
@@ -132,6 +133,7 @@
         </a>
         <div class="swipe-hint">
             <span class="dot-nav">
+                <span class="dot"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>

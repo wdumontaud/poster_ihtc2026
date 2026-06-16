@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animation 2</title>
+    <title>Animations — Introduction</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,15 +40,47 @@
             letter-spacing: 0.1em; white-space: nowrap;
         }
         h1 { font-size: 1rem; font-weight: 500; color: var(--black); letter-spacing: 0.01em; }
-        .anim-frame {
-            width: 100%; max-width: 860px; border: 1px solid var(--light); background: white;
-            display: flex; align-items: center; justify-content: center; padding: 1rem; min-height: 300px;
+
+        /* Intro-specific */
+        .intro-block {
+            width: 100%; max-width: 860px; display: flex; flex-direction: column; gap: 1.1rem;
         }
-        .anim-frame img { max-width: 100%; max-height: 72vh; display: block; }
-        .caption {
-            width: 100%; max-width: 860px; font-size: 0.78rem; color: var(--gray); line-height: 1.6;
-            border-left: 2px solid var(--light); padding-left: 0.8rem;
+        .research-title {
+            font-size: 1.1rem; font-weight: 500; line-height: 1.5; color: var(--black);
+            letter-spacing: 0.01em;
         }
+        .author-row {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: var(--gray);
+            display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;
+        }
+        .author-sep { color: #ccc; }
+        .abstract {
+            font-size: 0.82rem; line-height: 1.72; color: var(--gray);
+            border-left: 2px solid var(--accent); padding-left: 0.8rem;
+        }
+        .divider { width: 100%; height: 1px; background: var(--light); }
+        .overview-label {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; color: #bbb;
+            letter-spacing: 0.14em; text-transform: uppercase;
+        }
+        .pages-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;
+        }
+        .page-card {
+            border: 1px solid var(--light); background: white; padding: 0.75rem 1rem;
+            text-decoration: none; color: var(--black);
+            transition: border-color 0.2s, background 0.2s;
+            display: flex; flex-direction: column; gap: 0.3rem;
+        }
+        .page-card:hover { border-color: var(--accent); background: #fef6ee; }
+        .page-card-num {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: var(--accent);
+            letter-spacing: 0.1em;
+        }
+        .page-card-title {
+            font-size: 0.78rem; font-weight: 500; line-height: 1.35; color: var(--black);
+        }
+
         .swipe-nav {
             width: 100%; max-width: 860px; display: flex; align-items: center; justify-content: space-between;
             gap: 1rem; padding: 0.6rem 0;
@@ -83,6 +115,9 @@
         .social-link { color: var(--gray); transition: color 0.2s; }
         .social-link:hover { color: var(--accent); }
         .social-link svg { width: 18px; height: 18px; }
+        @media (max-width: 560px) {
+            .pages-grid { grid-template-columns: 1fr; }
+        }
         @media (max-width: 400px) {
             .swipe-label { display: none; }
             .swipe-btn span { display: none; }
@@ -95,9 +130,9 @@
 <header>
     <span class="header-tag">Poster — Animations</span>
     <nav class="nav-links">
-        <a href="anim0.html">00</a>
+        <a href="anim0.html" class="active">00</a>
         <a href="anim1.html">01</a>
-        <a href="anim2.html" class="active">02</a>
+        <a href="anim2.html">02</a>
         <a href="anim3.html">03</a>
         <a href="anim4.html">04</a>
     </nav>
@@ -105,39 +140,74 @@
 
 <main>
     <div class="meta">
-        <span class="anim-number">PAGE. 02 / 05</span>
-        <h1>Convergence of the NSGAII algorithm for interface optimisation in Rio de Janeiro</h1>
+        <span class="anim-number">PAGE. 00 / 05</span>
+        <h1>Introduction</h1>
     </div>
 
-    <div class="anim-frame">
-        <img src="fig/interface_anim.gif" alt="Animation de l'interface thermique">
-    </div>
+    <div class="intro-block">
 
-    <div class="anim-frame">
-        <img src="fig/convergence.gif" alt="Description du 2e GIF">
-    </div>
+        <!-- ↓ Remplacer par le titre exact de votre article -->
+        <p class="research-title">
+            Design Optimization of the insulation domain in a building wall
+        </p>
 
-    <p class="caption">
-        First, we can see how the interface evolves, with its Bézier points for the 42 individuals in each generation of the genetic algorithm.
-        Below this, the evolution of the convergence indicators up to the limit is shown.
-    </p>
+        <div class="author-row">
+            <span>William Dumontaud</span>
+            <span class="author-sep">·</span>
+            <!-- ↓ Remplacer par votre institution -->
+            <span>Université de La Rochelle &amp; CNRS</span>
+            <span class="author-sep">·</span>
+            <span>IHTC 2026</span>
+        </div>
+
+        <!-- ↓ Remplacer ou adapter le résumé -->
+        <p class="abstract">
+            This page presents the supplementary animations for the poster displayed at IHTC&nbsp;2026.
+            The research investigates the shape optimisation of the material interface in multilayer building
+            façades, parameterised using Bézier curves and optimised with the NSGA-II multi-objective genetic
+            algorithm, with application to Brazilian climates.
+        </p>
+
+        <div class="divider"></div>
+        <span class="overview-label">Animations</span>
+
+        <div class="pages-grid">
+            <a class="page-card" href="anim1.html">
+                <span class="page-card-num">01</span>
+                <span class="page-card-title">Interface definition</span>
+            </a>
+            <a class="page-card" href="anim2.html">
+                <span class="page-card-num">02</span>
+                <span class="page-card-title">NSGA-II convergence</span>
+            </a>
+            <a class="page-card" href="anim3.html">
+                <span class="page-card-num">03</span>
+                <span class="page-card-title">Temperature field evolution</span>
+            </a>
+            <a class="page-card" href="anim4.html">
+                <span class="page-card-num">04</span>
+                <span class="page-card-title">Article &amp; Poster</span>
+            </a>
+        </div>
+
+    </div>
 
     <div class="swipe-nav">
-        <a class="swipe-btn prev" href="anim1.html">
+        <a class="swipe-btn prev disabled" aria-label="No previous page">
             <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><polyline points="11,3 5,9 11,15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span>Prev</span>
         </a>
         <div class="swipe-hint">
             <span class="dot-nav">
-                <span class="dot"></span>
-                <span class="dot"></span>
                 <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>
             </span>
             <span class="swipe-label">swipe to navigate</span>
         </div>
-        <a class="swipe-btn next" href="anim3.html">
+        <a class="swipe-btn next" href="anim1.html">
             <span>Next</span>
             <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><polyline points="7,3 13,9 7,15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -156,23 +226,20 @@
             <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="14" font-size="7" text-anchor="middle" fill="currentColor" font-family="IBM Plex Sans">HAL</text></svg>
         </a>
     </div>
-    <span class="footer-text">Swipe or use ← → to navigate</span>
+    <span class="footer-text">Swipe or use → to navigate</span>
 </footer>
 
 <script>
     document.addEventListener('keydown', e => {
-        if (e.key === 'ArrowLeft') location.href = 'anim1.html';
-        if (e.key === 'ArrowRight') location.href = 'anim3.html';
+        if (e.key === 'ArrowRight') location.href = 'anim1.html';
     });
     let touchStartX = 0;
     document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
     document.addEventListener('touchend', e => {
         const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 50) {
-            if (dx < 0) location.href = 'anim3.html';
-            else location.href = 'anim1.html';
-        }
+        if (Math.abs(dx) > 50 && dx < 0) location.href = 'anim1.html';
     }, { passive: true });
 </script>
+
 </body>
 </html>

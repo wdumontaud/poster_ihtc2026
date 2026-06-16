@@ -8,7 +8,7 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --black: #111; --gray: #555; --light: #e8e8e8; --accent: #1a4f8a; --bg: #fafafa;
+            --black: #111; --gray: #555; --light: #e8e8e8; --accent: #ED8428; --bg: #fafafa;
         }
         body {
             font-family: 'IBM Plex Sans', sans-serif; background: var(--bg); color: var(--black);
@@ -29,7 +29,7 @@
             border-radius: 2px; transition: border-color 0.2s, color 0.2s;
         }
         .nav-links a:hover { border-color: var(--accent); color: var(--accent); }
-        .nav-links a.active { border-color: var(--accent); color: var(--accent); background: #f0f5fb; }
+        .nav-links a.active { border-color: var(--accent); color: var(--accent); background: #fef6ee; }
         main {
             flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
             padding: 2rem; gap: 1.5rem;
@@ -54,7 +54,6 @@
         .anim-frame.single img {
             width: 100%; max-height: 72vh; object-fit: contain;
         }
-
         .caption {
             width: 100%; max-width: 860px; font-size: 0.78rem; color: var(--gray); line-height: 1.6;
             border-left: 2px solid var(--light); padding-left: 0.8rem;
@@ -69,7 +68,7 @@
             border: 1px solid var(--light); border-radius: 3px; transition: border-color 0.2s, color 0.2s, background 0.2s;
             letter-spacing: 0.06em; min-width: 80px; white-space: nowrap;
         }
-        .swipe-btn:hover { border-color: var(--accent); color: var(--accent); background: #f0f5fb; }
+        .swipe-btn:hover { border-color: var(--accent); color: var(--accent); background: #fef6ee; }
         .swipe-btn.disabled { opacity: 0.25; pointer-events: none; }
         .swipe-btn.next { justify-content: flex-end; }
         .swipe-btn.prev { justify-content: flex-start; }
@@ -105,6 +104,7 @@
 <header>
     <span class="header-tag">Poster — Animations</span>
     <nav class="nav-links">
+        <a href="anim0.html">00</a>
         <a href="anim1.html">01</a>
         <a href="anim2.html">02</a>
         <a href="anim3.html" class="active">03</a>
@@ -114,7 +114,7 @@
 
 <main>
     <div class="meta">
-        <span class="anim-number">PAGE. 03 / 04</span>
+        <span class="anim-number">PAGE. 03 / 05</span>
         <h1>Temporal evolution of the temperature field in an optimised façade</h1>
     </div>
 
@@ -138,6 +138,7 @@
         </a>
         <div class="swipe-hint">
             <span class="dot-nav">
+                <span class="dot"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>
                 <span class="dot active"></span>

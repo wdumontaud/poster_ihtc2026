@@ -8,7 +8,7 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --black: #111; --gray: #555; --light: #e8e8e8; --accent: #1a4f8a; --bg: #fafafa;
+            --black: #111; --gray: #555; --light: #e8e8e8; --accent: #ED8428; --bg: #fafafa;
         }
         body {
             font-family: 'IBM Plex Sans', sans-serif; background: var(--bg); color: var(--black);
@@ -29,7 +29,7 @@
             border-radius: 2px; transition: border-color 0.2s, color 0.2s;
         }
         .nav-links a:hover { border-color: var(--accent); color: var(--accent); }
-        .nav-links a.active { border-color: var(--accent); color: var(--accent); background: #f0f5fb; }
+        .nav-links a.active { border-color: var(--accent); color: var(--accent); background: #fef6ee; }
         main {
             flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
             padding: 2rem; gap: 1.5rem;
@@ -59,7 +59,7 @@
             border: 1px solid var(--light); border-radius: 3px; transition: border-color 0.2s, color 0.2s, background 0.2s;
             letter-spacing: 0.06em; min-width: 80px; white-space: nowrap;
         }
-        .swipe-btn:hover { border-color: var(--accent); color: var(--accent); background: #f0f5fb; }
+        .swipe-btn:hover { border-color: var(--accent); color: var(--accent); background: #fef6ee; }
         .swipe-btn.disabled { opacity: 0.25; pointer-events: none; }
         .swipe-btn.next { justify-content: flex-end; }
         .swipe-btn.prev { justify-content: flex-start; }
@@ -95,6 +95,7 @@
 <header>
     <span class="header-tag">Poster — Animations</span>
     <nav class="nav-links">
+        <a href="anim0.html">00</a>
         <a href="anim1.html" class="active">01</a>
         <a href="anim2.html">02</a>
         <a href="anim3.html">03</a>
@@ -104,7 +105,7 @@
 
 <main>
     <div class="meta">
-        <span class="anim-number">PAGE. 01 / 04</span>
+        <span class="anim-number">PAGE. 01 / 05</span>
         <h1>Interface definition</h1>
     </div>
 
@@ -117,12 +118,13 @@
     </p>
 
     <div class="swipe-nav">
-        <a class="swipe-btn prev disabled" aria-label="No previous animation">
+        <a class="swipe-btn prev" href="anim0.html">
             <svg width="16" height="16" viewBox="0 0 18 18" fill="none"><polyline points="11,3 5,9 11,15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             <span>Prev</span>
         </a>
         <div class="swipe-hint">
             <span class="dot-nav">
+                <span class="dot"></span>
                 <span class="dot active"></span>
                 <span class="dot"></span>
                 <span class="dot"></span>
@@ -154,6 +156,7 @@
 
 <script>
     document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft') location.href = 'anim0.html';
         if (e.key === 'ArrowRight') location.href = 'anim2.html';
     });
     let touchStartX = 0;
@@ -162,6 +165,7 @@
         const dx = e.changedTouches[0].clientX - touchStartX;
         if (Math.abs(dx) > 50) {
             if (dx < 0) location.href = 'anim2.html';
+            else location.href = 'anim0.html';
         }
     }, { passive: true });
 </script>
