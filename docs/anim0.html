@@ -81,6 +81,24 @@
             font-size: 0.78rem; font-weight: 500; line-height: 1.35; color: var(--black);
         }
 
+        /* Documents (article / poster) */
+        .documents-row {
+            display: flex; gap: 1rem;
+        }
+        .doc-card {
+            flex: 1; border: 1px solid var(--light); background: white; padding: 0.9rem 1rem;
+            text-decoration: none; color: var(--black); display: flex; flex-direction: column;
+            align-items: center; gap: 0.6rem; transition: border-color 0.2s, background 0.2s;
+        }
+        .doc-card:hover { border-color: var(--accent); background: #fef6ee; }
+        .doc-card img {
+            max-width: 100%; max-height: 200px; height: auto; object-fit: contain;
+        }
+        .doc-card-label {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; color: var(--gray);
+            letter-spacing: 0.08em; text-transform: uppercase;
+        }
+
         .swipe-nav {
             width: 100%; max-width: 860px; display: flex; align-items: center; justify-content: space-between;
             gap: 1rem; padding: 0.6rem 0;
@@ -117,6 +135,7 @@
         .social-link svg { width: 18px; height: 18px; }
         @media (max-width: 560px) {
             .pages-grid { grid-template-columns: 1fr; }
+            .documents-row { flex-direction: column; }
         }
         @media (max-width: 400px) {
             .swipe-label { display: none; }
@@ -170,7 +189,7 @@
 <main>
 
     <div class="meta">
-        <span class="anim-number">PAGE. 00 / 05</span>
+        <span class="anim-number">PAGE. 00 / 04</span>
         <h1>Introduction</h1>
     </div>
 
@@ -222,7 +241,27 @@
             </a>
             <a class="page-card" href="anim4.html">
                 <span class="page-card-num">04</span>
-                <span class="page-card-title">Article &amp; Poster</span>
+                <span class="page-card-title">Improvement map by city</span>
+            </a>
+        </div>
+
+        <div class="divider"></div>
+        <span class="overview-label">Documents</span>
+
+        <p class="caption">
+        Click on the article or poster to open it in a new window.
+        </p>
+
+        <div class="documents-container">
+
+            <a href="pdf/article_ihtc2026_dumontaud.pdf" target="_blank" rel="noopener noreferrer">
+                <img src="fig/article_previsu.png" alt="Prévisualisation article" style="max-width: 300px; height: auto; display: block; margin: 0 auto;">
+            </a>
+
+            <div style="border-top: 1px solid #e8e8e8; width: 100%; max-width: 300px; margin: 1.5rem auto;"></div>
+
+            <a href="pdf/poster_ihtc2026_dumontaud.pdf" target="_blank" rel="noopener noreferrer">
+                <img src="fig/poster_previsu.png" alt="Prévisualisation poster" style="max-width: 300px; height: auto; display: block; margin: 0 auto;">
             </a>
         </div>
 

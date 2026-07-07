@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animation 4 — Article PDF</title>
+    <title>Animation 4 — Carte des résultats</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
@@ -32,7 +33,7 @@
         .nav-links a.active { border-color: var(--accent); color: var(--accent); background: #fef6ee; }
         main {
             flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 1rem; gap: 1.5rem;
+            padding: 1rem; gap: 1.2rem;
         }
         .meta { width: 100%; max-width: 860px; display: flex; align-items: baseline; gap: 1rem; padding: 0 1rem; }
         .anim-number {
@@ -40,15 +41,46 @@
             letter-spacing: 0.1em; white-space: nowrap;
         }
         h1 { font-size: 1rem; font-weight: 500; color: var(--black); letter-spacing: 0.01em; }
-        .anim-frame {
+
+        .map-frame {
             width: 100%; max-width: 860px; border: 1px solid var(--light); background: white;
-            display: flex; align-items: center; justify-content: center; padding: 1rem; min-height: 72vh;
+            padding: 0.5rem;
         }
-        .anim-frame iframe { width: 100%; height: 100%; min-height: 600px; border: none; }
+        #brazil-map {
+            width: 100%; height: 58vh; min-height: 420px; max-height: 620px; background: #f4f4f2;
+        }
+
         .caption {
             width: 100%; max-width: 860px; font-size: 0.78rem; color: var(--gray); line-height: 1.6;
             border-left: 2px solid var(--light); padding-left: 0.8rem; margin: 0 1rem;
         }
+
+        /* Leaflet overrides to match the site's editorial style */
+        .leaflet-container { font-family: 'IBM Plex Sans', sans-serif; background: #f4f4f2; }
+        .leaflet-popup-content-wrapper {
+            border-radius: 2px; border: 1px solid var(--light); box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+        .leaflet-popup-tip { box-shadow: none; border: 1px solid var(--light); }
+        .leaflet-popup-content { margin: 0.7rem 0.85rem; }
+        .popup-city h3 {
+            font-size: 0.82rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--black);
+        }
+        .popup-table { width: 100%; border-collapse: collapse; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; }
+        .popup-table th, .popup-table td { padding: 0.25rem 0.55rem; text-align: center; border-bottom: 1px solid var(--light); }
+        .popup-table th { color: var(--gray); font-weight: 500; }
+        .popup-table td:first-child, .popup-table th:first-child { text-align: left; color: var(--gray); }
+        .popup-table tr:last-child td { border-bottom: none; }
+        .city-label {
+            background: white; border: 1px solid var(--light); border-radius: 2px;
+            box-shadow: none; font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem;
+            color: var(--gray); padding: 1px 5px; letter-spacing: 0.02em;
+        }
+        .city-label::before { display: none; }
+        .leaflet-control-zoom a { border-radius: 2px !important; color: var(--gray) !important; }
+        .leaflet-control-attribution {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; background: rgba(255,255,255,0.85);
+        }
+
         .swipe-nav {
             width: 100%; max-width: 860px; display: flex; align-items: center; justify-content: space-between;
             gap: 1rem; padding: 0.6rem 1rem;
@@ -105,26 +137,18 @@
 
 <main>
     <div class="meta">
-        <span class="anim-number">PAGE. 04 / 05</span>
-        <h1>Article &amp; Poster Links</h1>
+        <span class="anim-number">PAGE. 04 / 04</span>
+        <h1>Improvement of the optimised interface by city, orientation &amp; configuration</h1>
+    </div>
+
+    <div class="map-frame">
+        <div id="brazil-map"></div>
     </div>
 
     <p class="caption">
-        Click on the article or poster to open it in a new window.
+        Click a city marker to see the percentage improvement of the optimized interface for that location, for
+        internal (IWI) and external (EWI) wall insulation configurations, and for north- and west-facing façades.
     </p>
-
-    <div class="documents-container">
-
-        <a href="pdf/article_ihtc2026_dumontaud.pdf" target="_blank" rel="noopener noreferrer">
-            <img src="fig/article_previsu.png" alt="Prévisualisation article" style="max-width: 300px; height: auto; display: block; margin: 0 auto;">
-        </a>
-
-        <div style="border-top: 1px solid #e8e8e8; width: 100%; max-width: 300px; margin: 1.5rem auto;"></div>
-
-        <a href="pdf/poster_ihtc2026_dumontaud.pdf" target="_blank" rel="noopener noreferrer">
-            <img src="fig/poster_previsu.png" alt="Prévisualisation poster" style="max-width: 300px; height: auto; display: block; margin: 0 auto;">
-        </a>
-    </div>
 
     <div class="swipe-nav">
         <a class="swipe-btn prev" href="anim3.html">
@@ -160,16 +184,87 @@
             <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><text x="12" y="14" font-size="7" text-anchor="middle" fill="currentColor" font-family="IBM Plex Sans">HAL</text></svg>
         </a>
     </div>
-    <span class="footer-text">Swipe or use ← → to navigate</span>
+    <span class="footer-text">Swipe or use ← to navigate</span>
 </footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+    // --- City data: improvement (%) of the optimised interface, by configuration and orientation ---
+    const cities = [
+        { name: "Curitiba",       lat: -25.4284, lon: -49.2733, iwi: { north: 37.37, west: 14.87 }, ewi: { north: 7.61,  west: 5.39  } },
+        { name: "Florianópolis",  lat: -27.5954, lon: -48.5480, iwi: { north: 4.90,  west: 3.48  }, ewi: { north: 5.12,  west: 2.97  } },
+        { name: "Manaus",         lat: -3.1190,  lon: -60.0217, iwi: { north: 4.62,  west: 4.66  }, ewi: { north: 1.54,  west: 1.62  } },
+        { name: "Rio de Janeiro", lat: -22.9068, lon: -43.1729, iwi: { north: 4.80,  west: 4.95  }, ewi: { north: 1.69,  west: 1.80  } },
+        { name: "São Paulo",      lat: -23.5505, lon: -46.6333, iwi: { north: 21.30, west: 7.10  }, ewi: { north: 16.26, west: 16.60 } },
+        { name: "Teresina",       lat: -5.0892,  lon: -42.8019, iwi: { north: 4.89,  west: 4.74  }, ewi: { north: 2.16,  west: 1.99  } }
+    ];
+
+    const map = L.map('brazil-map', {
+        scrollWheelZoom: false,
+        zoomControl: true,
+        attributionControl: true,
+        minZoom: 3,
+        maxZoom: 8
+    });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 8
+    }).addTo(map);
+
+    function fmt(v) { return v.toFixed(2).replace(/\.00$/, '') + '%'; }
+
+    function popupHTML(city) {
+        return `
+            <div class="popup-city">
+                <h3>${city.name}</h3>
+                <table class="popup-table">
+                    <thead>
+                        <tr><th></th><th>North</th><th>West</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>IWI</td><td>${fmt(city.iwi.north)}</td><td>${fmt(city.iwi.west)}</td></tr>
+                        <tr><td>EWI</td><td>${fmt(city.ewi.north)}</td><td>${fmt(city.ewi.west)}</td></tr>
+                    </tbody>
+                </table>
+            </div>`;
+    }
+
+    const bounds = [];
+    cities.forEach(city => {
+        const marker = L.circleMarker([city.lat, city.lon], {
+            radius: 7,
+            weight: 2,
+            color: '#ffffff',
+            fillColor: '#ED8428',
+            fillOpacity: 0.9
+        }).addTo(map);
+
+        marker.bindTooltip(city.name, { permanent: true, direction: 'top', offset: [0, -6], className: 'city-label' });
+        marker.bindPopup(popupHTML(city));
+
+        marker.on('mouseover', () => marker.setStyle({ radius: 9 }));
+        marker.on('mouseout', () => marker.setStyle({ radius: 7 }));
+
+        bounds.push([city.lat, city.lon]);
+    });
+
+    map.fitBounds(bounds, { padding: [40, 40] });
+</script>
 
 <script>
     document.addEventListener('keydown', e => {
-        if (e.key === 'ArrowLeft') location.href = 'anim3.html';
+        if (e.key === 'ArrowLeft' && !e.target.closest('#brazil-map')) location.href = 'anim3.html';
     });
     let touchStartX = 0;
-    document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    let touchStartedOnMap = false;
+    document.addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].clientX;
+        touchStartedOnMap = !!e.target.closest('#brazil-map');
+    }, { passive: true });
     document.addEventListener('touchend', e => {
+        if (touchStartedOnMap) return;
         const dx = e.changedTouches[0].clientX - touchStartX;
         if (Math.abs(dx) > 50 && dx > 0) location.href = 'anim3.html';
     }, { passive: true });
