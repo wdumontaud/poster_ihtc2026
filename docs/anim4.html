@@ -33,7 +33,7 @@
         .nav-links a.active { border-color: var(--accent); color: var(--accent); background: #fef6ee; }
         main {
             flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 1rem; gap: 1.2rem;
+            padding: 1rem; gap: 1rem;
         }
         .meta { width: 100%; max-width: 860px; display: flex; align-items: baseline; gap: 1rem; padding: 0 1rem; }
         .anim-number {
@@ -42,12 +42,46 @@
         }
         h1 { font-size: 1rem; font-weight: 500; color: var(--black); letter-spacing: 0.01em; }
 
+        /* --- Selector bar --- */
+        .selector-bar {
+            width: 100%; max-width: 860px; padding: 0 1rem;
+            display: flex; flex-wrap: wrap; align-items: center; gap: 1.4rem;
+        }
+        .toggle-group-wrap { display: flex; align-items: center; gap: 0.55rem; }
+        .toggle-group-label {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; color: #bbb;
+            letter-spacing: 0.12em; text-transform: uppercase; width: 100px;
+        }
+        .toggle-group {
+            display: flex; border: 1px solid var(--light); border-radius: 3px; overflow: hidden;
+        }
+        .toggle-btn {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.04em;
+            color: var(--gray); background: white; border: none; padding: 0.42rem 0.9rem;
+            cursor: pointer; transition: background 0.2s, color 0.2s; min-width: 70px;
+        }
+        .toggle-btn + .toggle-btn { border-left: 1px solid var(--light); }
+        .toggle-btn:hover:not(.active) { background: #fef6ee; color: var(--accent); }
+        .toggle-btn.active { background: var(--accent); color: white; }
+
         .map-frame {
             width: 100%; max-width: 860px; border: 1px solid var(--light); background: white;
             padding: 0.5rem;
         }
         #brazil-map {
-            width: 100%; height: 58vh; min-height: 420px; max-height: 620px; background: #f4f4f2;
+            width: 100%; height: 55vh; min-height: 400px; max-height: 580px; background: #f4f4f2;
+        }
+
+        /* --- Legend --- */
+        .legend {
+            width: 100%; max-width: 860px; padding: 0 1rem;
+            display: flex; align-items: center; gap: 0.6rem;
+        }
+        .legend-label {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; color: var(--gray); white-space: nowrap;
+        }
+        .legend-gradient {
+            flex: 1; height: 8px; border-radius: 2px; border: 1px solid var(--light);
         }
 
         .caption {
@@ -57,23 +91,10 @@
 
         /* Leaflet overrides to match the site's editorial style */
         .leaflet-container { font-family: 'IBM Plex Sans', sans-serif; background: #f4f4f2; }
-        .leaflet-popup-content-wrapper {
-            border-radius: 2px; border: 1px solid var(--light); box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-        }
-        .leaflet-popup-tip { box-shadow: none; border: 1px solid var(--light); }
-        .leaflet-popup-content { margin: 0.7rem 0.85rem; }
-        .popup-city h3 {
-            font-size: 0.82rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--black);
-        }
-        .popup-table { width: 100%; border-collapse: collapse; font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; }
-        .popup-table th, .popup-table td { padding: 0.25rem 0.55rem; text-align: center; border-bottom: 1px solid var(--light); }
-        .popup-table th { color: var(--gray); font-weight: 500; }
-        .popup-table td:first-child, .popup-table th:first-child { text-align: left; color: var(--gray); }
-        .popup-table tr:last-child td { border-bottom: none; }
         .city-label {
             background: white; border: 1px solid var(--light); border-radius: 2px;
             box-shadow: none; font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem;
-            color: var(--gray); padding: 1px 5px; letter-spacing: 0.02em;
+            color: var(--gray); padding: 1px 5px; letter-spacing: 0.02em; white-space: nowrap;
         }
         .city-label::before { display: none; }
         .leaflet-control-zoom a { border-radius: 2px !important; color: var(--gray) !important; }
@@ -120,6 +141,34 @@
             .swipe-btn span { display: none; }
             .social-links { margin-right: 0.5rem; }
         }
+
+        /* --- Modal (wall image) --- */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(17,17,17,0.55);
+            display: none; align-items: center; justify-content: center; z-index: 1000; padding: 1.2rem;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal-content {
+            background: white; border: 1px solid var(--light); width: 100%; max-width: 640px;
+            max-height: 88vh; overflow: auto; padding: 1.3rem; position: relative;
+        }
+        .modal-close {
+            position: absolute; top: 0.6rem; right: 0.6rem; width: 28px; height: 28px;
+            border: 1px solid var(--light); background: white; border-radius: 2px; cursor: pointer;
+            font-size: 1rem; line-height: 1; color: var(--gray);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .modal-close:hover { border-color: var(--accent); color: var(--accent); }
+        .modal-title { font-size: 0.85rem; font-weight: 500; padding-right: 2rem; color: var(--black); }
+        .modal-subtitle {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--gray);
+            margin: 0.3rem 0 0.9rem;
+        }
+        .modal-image { width: 100%; display: block; border: 1px solid var(--light); }
+        .modal-fallback {
+            font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; color: #bbb;
+            border: 1px dashed var(--light); padding: 3rem 1rem; text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -141,13 +190,37 @@
         <h1>Improvement of the optimised interface by city, orientation &amp; configuration</h1>
     </div>
 
+    <div class="selector-bar">
+        <div class="toggle-group-wrap">
+            <span class="toggle-group-label">Insulation</span>
+            <div class="toggle-group" data-group="insulation">
+                <button class="toggle-btn active" data-value="iwi">IWI</button>
+                <button class="toggle-btn" data-value="ewi">EWI</button>
+            </div>
+        </div>
+        <div class="toggle-group-wrap">
+            <span class="toggle-group-label">Orientation</span>
+            <div class="toggle-group" data-group="orientation">
+                <button class="toggle-btn active" data-value="north">North</button>
+                <button class="toggle-btn" data-value="west">West</button>
+            </div>
+        </div>
+    </div>
+
     <div class="map-frame">
         <div id="brazil-map"></div>
     </div>
 
+    <div class="legend">
+        <span class="legend-label" id="legend-min">–</span>
+        <div class="legend-gradient" id="legend-gradient"></div>
+        <span class="legend-label" id="legend-max">–</span>
+    </div>
+
     <p class="caption">
-        Click a city marker to see the percentage improvement of the optimized interface for that location, for
-        internal (IWI) and external (EWI) wall insulation configurations, and for north- and west-facing façades.
+        Select an insulation configuration (IWI / EWI) and a façade orientation (North / West) above. Marker
+        colour encodes the percentage improvement of the optimised interface for that combination, from light
+        to dark orange. Click a marker to view the corresponding optimised wall cross-section.
     </p>
 
     <div class="swipe-nav">
@@ -187,6 +260,17 @@
     <span class="footer-text">Swipe or use ← to navigate</span>
 </footer>
 
+<!-- Wall image modal -->
+<div class="modal-overlay" id="wall-modal">
+    <div class="modal-content">
+        <button class="modal-close" id="modal-close-btn" aria-label="Close">×</button>
+        <h3 class="modal-title" id="modal-title"></h3>
+        <p class="modal-subtitle" id="modal-subtitle"></p>
+        <img class="modal-image" id="modal-image" alt="">
+        <p class="modal-fallback" id="modal-fallback" style="display:none;">Image à venir</p>
+    </div>
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
     // --- City data: improvement (%) of the optimised interface, by configuration and orientation ---
@@ -199,6 +283,35 @@
         { name: "Teresina",       lat: -5.0892,  lon: -42.8019, iwi: { north: 4.89,  west: 4.74  }, ewi: { north: 2.16,  west: 1.99  } }
     ];
 
+    // --- Selection state (mutually exclusive within each group) ---
+    let currentInsulation = 'iwi';   // 'iwi' | 'ewi'
+    let currentOrientation = 'north'; // 'north' | 'west'
+
+    function getValue(city) { return city[currentInsulation][currentOrientation]; }
+    function fmt(v) { return v.toFixed(2).replace(/\.00$/, '') + '%'; }
+
+    // --- Global colour scale (same min/max across all 4 combinations, for comparability) ---
+    const allValues = [];
+    cities.forEach(c => allValues.push(c.iwi.north, c.iwi.west, c.ewi.north, c.ewi.west));
+    const globalMin = Math.min(...allValues);
+    const globalMax = Math.max(...allValues);
+    const HUE = 28, SAT = 85, LIGHT_MAX = 88, LIGHT_MIN = 25;
+
+    function valueToColor(v) {
+        const t = (v - globalMin) / (globalMax - globalMin);
+        const lightness = LIGHT_MAX - t * (LIGHT_MAX - LIGHT_MIN);
+        return `hsl(${HUE}, ${SAT}%, ${lightness}%)`;
+    }
+
+    function slug(name) {
+        return name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\s+/g, '_');
+    }
+
+    function tooltipText(city) {
+        return `${city.name} · ${fmt(getValue(city))}`;
+    }
+
+    // --- Map setup ---
     const map = L.map('brazil-map', {
         scrollWheelZoom: false,
         zoomControl: true,
@@ -213,58 +326,107 @@
         maxZoom: 8
     }).addTo(map);
 
-    function fmt(v) { return v.toFixed(2).replace(/\.00$/, '') + '%'; }
-
-    function popupHTML(city) {
-        return `
-            <div class="popup-city">
-                <h3>${city.name}</h3>
-                <table class="popup-table">
-                    <thead>
-                        <tr><th></th><th>North</th><th>West</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>IWI</td><td>${fmt(city.iwi.north)}</td><td>${fmt(city.iwi.west)}</td></tr>
-                        <tr><td>EWI</td><td>${fmt(city.ewi.north)}</td><td>${fmt(city.ewi.west)}</td></tr>
-                    </tbody>
-                </table>
-            </div>`;
-    }
-
+    const markers = [];
     const bounds = [];
     cities.forEach(city => {
         const marker = L.circleMarker([city.lat, city.lon], {
             radius: 7,
             weight: 2,
             color: '#ffffff',
-            fillColor: '#ED8428',
+            fillColor: valueToColor(getValue(city)),
             fillOpacity: 0.9
         }).addTo(map);
 
-        marker.bindTooltip(city.name, { permanent: true, direction: 'top', offset: [0, -6], className: 'city-label' });
-        marker.bindPopup(popupHTML(city));
+        marker.bindTooltip(tooltipText(city), { permanent: true, direction: 'top', offset: [0, -6], className: 'city-label' });
 
         marker.on('mouseover', () => marker.setStyle({ radius: 9 }));
         marker.on('mouseout', () => marker.setStyle({ radius: 7 }));
+        marker.on('click', () => openModal(city));
 
+        markers.push({ marker, city });
         bounds.push([city.lat, city.lon]);
     });
 
     map.fitBounds(bounds, { padding: [40, 40] });
+
+    function updateMarkers() {
+        markers.forEach(({ marker, city }) => {
+            marker.setStyle({ fillColor: valueToColor(getValue(city)) });
+            marker.setTooltipContent(tooltipText(city));
+        });
+    }
+
+    // --- Legend ---
+    document.getElementById('legend-gradient').style.background =
+        `linear-gradient(to right, hsl(${HUE},${SAT}%,${LIGHT_MAX}%), hsl(${HUE},${SAT}%,${LIGHT_MIN}%))`;
+    document.getElementById('legend-min').textContent = fmt(globalMin);
+    document.getElementById('legend-max').textContent = fmt(globalMax);
+
+    // --- Selector bar (radio-style toggle groups) ---
+    document.querySelectorAll('.toggle-group').forEach(group => {
+        group.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (btn.classList.contains('active')) return;
+                group.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                if (group.dataset.group === 'insulation') currentInsulation = btn.dataset.value;
+                if (group.dataset.group === 'orientation') currentOrientation = btn.dataset.value;
+                updateMarkers();
+            });
+        });
+    });
+
+    // --- Wall image modal ---
+    const modal = document.getElementById('wall-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalSubtitle = document.getElementById('modal-subtitle');
+    const modalImage = document.getElementById('modal-image');
+    const modalFallback = document.getElementById('modal-fallback');
+
+    function openModal(city) {
+        const insulationLabel = currentInsulation.toUpperCase();
+        const orientationLabel = currentOrientation === 'north' ? 'North' : 'West';
+        modalTitle.textContent = city.name;
+        modalSubtitle.textContent = `${insulationLabel} · ${orientationLabel} facade · ${fmt(getValue(city))} improvement`;
+
+        modalFallback.style.display = 'none';
+        modalImage.style.display = 'block';
+        modalImage.onerror = () => {
+            modalImage.style.display = 'none';
+            modalFallback.style.display = 'block';
+        };
+        // Expected file naming: fig/wall_<city>_<iwi|ewi>_<north|west>.png
+        modalImage.src = `fig/wall_${slug(city.name)}_${currentInsulation}_${currentOrientation}.png`;
+        modalImage.alt = `Optimised wall cross-section — ${city.name}, ${insulationLabel}, ${orientationLabel}`;
+
+        modal.classList.add('open');
+    }
+
+    function closeModal() {
+        modal.classList.remove('open');
+        modalImage.src = '';
+    }
+
+    document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 </script>
 
 <script>
     document.addEventListener('keydown', e => {
+        if (modal.classList.contains('open')) {
+            if (e.key === 'Escape') closeModal();
+            return;
+        }
         if (e.key === 'ArrowLeft' && !e.target.closest('#brazil-map')) location.href = 'anim3.html';
     });
     let touchStartX = 0;
     let touchStartedOnMap = false;
     document.addEventListener('touchstart', e => {
         touchStartX = e.touches[0].clientX;
-        touchStartedOnMap = !!e.target.closest('#brazil-map');
+        touchStartedOnMap = !!e.target.closest('#brazil-map') || !!e.target.closest('.modal-overlay');
     }, { passive: true });
     document.addEventListener('touchend', e => {
-        if (touchStartedOnMap) return;
+        if (touchStartedOnMap || modal.classList.contains('open')) return;
         const dx = e.changedTouches[0].clientX - touchStartX;
         if (Math.abs(dx) > 50 && dx > 0) location.href = 'anim3.html';
     }, { passive: true });
