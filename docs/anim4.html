@@ -420,15 +420,20 @@
         if (e.key === 'ArrowLeft' && !e.target.closest('#brazil-map')) location.href = 'anim3.html';
     });
     let touchStartX = 0;
+    let touchStartY = 0;
     let touchStartedOnMap = false;
     document.addEventListener('touchstart', e => {
         touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
         touchStartedOnMap = !!e.target.closest('#brazil-map') || !!e.target.closest('.modal-overlay');
     }, { passive: true });
     document.addEventListener('touchend', e => {
         if (touchStartedOnMap || modal.classList.contains('open')) return;
         const dx = e.changedTouches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 50 && dx > 0) location.href = 'anim3.html';
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        // Ignore the gesture if it was mostly vertical (a normal page scroll)
+        if (Math.abs(dx) < 60 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+        if (dx > 0) location.href = 'anim3.html';
     }, { passive: true });
 </script>
 </body>
