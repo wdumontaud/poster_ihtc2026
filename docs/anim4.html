@@ -320,11 +320,23 @@
         maxZoom: 8
     });
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+    const basemap = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
         maxZoom: 8
     }).addTo(map);
+
+    // Fallback: if CARTO tiles cannot be loaded (blocked domain/network), switch to OpenStreetMap
+    let basemapFailed = false;
+    basemap.on('tileerror', () => {
+        if (basemapFailed) return;
+        basemapFailed = true;
+        map.removeLayer(basemap);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 8
+        }).addTo(map);
+    });
 
     const markers = [];
     const bounds = [];
